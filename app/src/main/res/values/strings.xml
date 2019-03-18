@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">GWU Explorer</string>
+    <string name="start">Start:</string>
+    <string name="foggybottom">Foggy Bottom</string>
+    <string name="end">End:</string>
+    <string name="enterstationname">Enter Station Name</string>
+    <string name="remember">Remember</string>
+    <string name="go">Go</string>
+    <string name="alert">Alert</string>
+    <string name="title_activity_maps">Map</string>
+</resources>
