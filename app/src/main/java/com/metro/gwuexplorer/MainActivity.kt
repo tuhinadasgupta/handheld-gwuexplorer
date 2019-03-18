@@ -13,7 +13,6 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-
     private lateinit var stationname : EditText
     private lateinit var remember: CheckBox
     private lateinit var go : Button
@@ -21,7 +20,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var checkedBox: CheckBox
     private lateinit var text: String
     private  var bool1: Boolean = false
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

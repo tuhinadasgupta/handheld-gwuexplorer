@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView
 
 class AlertActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_alert)
