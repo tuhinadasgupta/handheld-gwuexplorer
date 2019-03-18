@@ -11,16 +11,9 @@ class AlertActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_alert)
-
-
-      recyclerView = findViewById(R.id.recyclerView)
-
-        // Set the direction of our list to be vertical
+        recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-
         val alert = generateFakeAlert()
-
-        // Create the adapter and assign it to the RecyclerView
         recyclerView.adapter = AlertAdapter(alert)
     }
 
