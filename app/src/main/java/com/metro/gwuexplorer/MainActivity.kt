@@ -11,6 +11,8 @@ import android.util.Log
 import android.widget.*
 import java.util.*
 
+//check
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var stationname : EditText
