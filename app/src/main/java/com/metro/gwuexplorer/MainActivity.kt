@@ -10,6 +10,8 @@ import android.support.v7.app.AlertDialog
 import android.widget.*
 import java.util.*
 
+//check
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var stationname : EditText
