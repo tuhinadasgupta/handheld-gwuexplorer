@@ -46,7 +46,8 @@ class MainActivity : AppCompatActivity() {
                 if (results != null && results.isNotEmpty()) {
                 first = results[0]
                 entManager.retrieveNearbyStation(
-                //passing the first result
+                //passing the first result & OAth key
+                primaryKey=getString(R.string.wmata_key),
                 address = first,
                 successCallback = { list,station ->
                     runOnUiThread {
@@ -60,11 +61,11 @@ class MainActivity : AppCompatActivity() {
                             .setTitle("Select an option")
                             .setAdapter(arrayAdapter) { dialog, which ->
                                 Toast.makeText(this, "You picked: ${list[which]}", Toast.LENGTH_SHORT).show()
-                            Log.d("code","${station[which]}")
-                                temp="${station[which]}"
+                            Log.d("code", station[which])
+                                temp= station[which]
                                 val intent = Intent(this, RouteActivity::class.java)
                                 intent.putExtra("StationCode", temp)
-                                intent.putExtra("Name","${list[which]}")
+                                intent.putExtra("Name", list[which])
                                 startActivity(intent)
                             }
                             .setNegativeButton("Cancel") { dialog, which ->
@@ -106,7 +107,7 @@ class MainActivity : AppCompatActivity() {
         text = preferences.getString("SAVED_STATIONNAME","")
         bool1=preferences.getBoolean("CHECKBOX",false)
     }
-     fun updateText(){
+     private fun updateText(){
          stationname.setText(text)
          remember.setChecked(bool1)
     }

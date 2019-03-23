@@ -48,13 +48,10 @@ class AlertManager {
                     val incidents = JSONObject(responseString).getJSONArray("Incidents")
                     for (i in 0 until incidents.length()) {
                         val curr = incidents.getJSONObject(i)
-                        val linename = curr.getString("LinesAffected")
-                        val desc = curr.getString("Description")
                         alerts.add(
                             Alert(
                                 icon = "http image",
-                                lineName = linename,
-                                description =desc
+                                stationName = "stationName"
                             )
                         )
                     }
