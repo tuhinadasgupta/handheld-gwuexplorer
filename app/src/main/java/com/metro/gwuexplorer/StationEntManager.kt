@@ -1,7 +1,6 @@
 package com.metro.gwuexplorer
 
 import android.location.Address
-import android.widget.Toast
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import org.json.JSONObject
@@ -36,7 +35,6 @@ class StationEntManager {
         val radius = "500"
         val primaryKey = "507c1527b662401aaee3f16396982ccc"
 
-        // Building the request, passing the OAuth token as a header
         val request = Request.Builder()
             .url("https://api.wmata.com/Rail.svc/json/jStationEntrances?Lat=$lat&Lon=$lon&Radius=$radius")
             .header("api_key", "$primaryKey")

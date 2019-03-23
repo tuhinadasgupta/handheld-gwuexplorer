@@ -31,7 +31,7 @@ class AlertActivity : AppCompatActivity() {
             errorCallback = {
                 runOnUiThread {
                     // defensive error check
-                    Toast.makeText(this@AlertActivity, "Error retrieving Tweets", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@AlertActivity, "Error retrieving alerts", Toast.LENGTH_LONG).show()
                 }
             }
         )

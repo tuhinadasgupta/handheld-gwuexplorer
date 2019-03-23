@@ -20,8 +20,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var checkedBox: CheckBox
     private lateinit var text: String
     private  var bool1: Boolean = false
-    private lateinit var first:Address
-    private lateinit var temp:String
+    private lateinit var first: Address
+    private lateinit var temp: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,7 +79,6 @@ class MainActivity : AppCompatActivity() {
                     }
                 })
                         saveData()
-                        loadData()
                 }
                 else{
                     //defensive error handling 

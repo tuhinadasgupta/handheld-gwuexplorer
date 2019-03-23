@@ -1,6 +1,5 @@
 package com.metro.gwuexplorer
 
-import android.util.Log
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import org.json.JSONObject
