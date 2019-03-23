@@ -33,8 +33,6 @@ class StationEntManager {
         val lat = address.latitude
         val lon = address.longitude
         val radius = "500"
-
-
         val request = Request.Builder()
             .url("https://api.wmata.com/Rail.svc/json/jStationEntrances?Lat=$lat&Lon=$lon&Radius=$radius")
             .header("api_key", primaryKey)
