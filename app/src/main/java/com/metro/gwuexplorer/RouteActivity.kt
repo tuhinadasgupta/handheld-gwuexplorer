@@ -53,7 +53,8 @@ class RouteActivity : AppCompatActivity() {
             startActivity(sendIntent)
         }
         direc.setOnClickListener {
-            val navigationUri = Uri.parse ("geo:38.9009,77.0505?q=" + Uri.encode(locationName+ ", Washington, DC metro"))
+            //foggy bottom lat and long
+            val navigationUri = Uri.parse ("geo:38.9009,-77.0505?q=" + Uri.encode(locationName+ ", Washington, DC metro"))
             val mapIntent = Intent(Intent.ACTION_VIEW, navigationUri)
             mapIntent.setPackage("com.google.android.apps.maps")
             startActivity(mapIntent)
