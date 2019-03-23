@@ -25,7 +25,7 @@ class StationEntManager {
     }
 
     fun retrieveNearbyStation(
-
+        primaryKey: String,
         address: Address,
         successCallback: (List<String>, List<String>) -> Unit,
         errorCallback: (Exception) -> Unit
@@ -33,11 +33,11 @@ class StationEntManager {
         val lat = address.latitude
         val lon = address.longitude
         val radius = "500"
-        val primaryKey = "507c1527b662401aaee3f16396982ccc"
+
 
         val request = Request.Builder()
             .url("https://api.wmata.com/Rail.svc/json/jStationEntrances?Lat=$lat&Lon=$lon&Radius=$radius")
-            .header("api_key", "$primaryKey")
+            .header("api_key", primaryKey)
             .build()
 
         okHttpClient.newCall(request).enqueue(object : Callback {

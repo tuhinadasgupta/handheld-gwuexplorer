@@ -24,15 +24,15 @@ class RouteManager {
     }
 
     fun retrieveStationList(
-
+        primaryKey: String,
         codeNext:String,
         successCallback: (List<String> , String) -> Unit,
         errorCallback: (Exception) -> Unit
     ) {
-        val primaryKey = "507c1527b662401aaee3f16396982ccc"
+
         val request = Request.Builder()
             .url("https://api.wmata.com/Rail.svc/json/jPath?FromStationCode=C04&ToStationCode=$codeNext")
-            .header("api_key", "$primaryKey")
+            .header("api_key", primaryKey)
             .build()
 
         okHttpClient.newCall(request).enqueue(object : Callback {

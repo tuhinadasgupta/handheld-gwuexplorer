@@ -30,6 +30,7 @@ class RouteActivity : AppCompatActivity() {
         val locationName:String = intentt.getStringExtra("Name")
         val hm: HashMap<String, String> = hashMapOf( "SV" to "Silver", "GR" to "Green", "BL" to "Blue", "RD" to "Red","YL" to "Yellow", "OR" to "Orange")
         routeManager.retrieveStationList(
+            primaryKey=getString(R.string.wmata_key),
             codeNext=stationcodeNext,
             successCallback = { path,line ->
                 runOnUiThread {
