@@ -33,7 +33,7 @@ class AlertManager {
         val primaryKey = "507c1527b662401aaee3f16396982ccc"
         val request = Request.Builder()
             .url("https://api.wmata.com/Incidents.svc/json/Incidents")
-            .header("api_key", "$primaryKey")
+            .header("api_key", primaryKey)
             .build()
 
         okHttpClient.newCall(request).enqueue(object : Callback {
@@ -47,7 +47,6 @@ class AlertManager {
                 if (response.isSuccessful && responseString != null) {
                     val incidents = JSONObject(responseString).getJSONArray("Incidents")
                     for (i in 0 until incidents.length()) {
-                        val curr = incidents.getJSONObject(i)
                         alerts.add(
                             Alert(
                                 icon = "http image",

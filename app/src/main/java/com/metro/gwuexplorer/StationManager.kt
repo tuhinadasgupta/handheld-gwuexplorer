@@ -8,7 +8,7 @@ import java.io.IOException
 import java.util.concurrent.TimeUnit
 
 
-class StationEntManager {
+class StationManager {
 
     private val okHttpClient: OkHttpClient
 
@@ -20,7 +20,6 @@ class StationEntManager {
         val logging = HttpLoggingInterceptor()
         logging.level = HttpLoggingInterceptor.Level.BODY
         builder.addInterceptor(logging)
-
         okHttpClient = builder.build()
     }
 

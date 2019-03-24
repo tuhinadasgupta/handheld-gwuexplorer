@@ -17,7 +17,6 @@ class AlertAdapter constructor(private val alerts: List<Alert>) : RecyclerView.A
         val currentAlerts = alerts[position]
         holder.lineNameTextView.text = currentAlerts.stationName
     }
-
     class ViewHolder constructor(view: View) : RecyclerView.ViewHolder(view) {
         val lineNameTextView: TextView = view.findViewById(R.id.stationName)
     }

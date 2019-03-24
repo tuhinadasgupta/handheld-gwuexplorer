@@ -12,7 +12,7 @@ import android.widget.*
 import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
-    private val entManager: StationEntManager = StationEntManager()
+    private val manager: StationManager = StationManager()
     private lateinit var stationname : EditText
     private lateinit var remember: CheckBox
     private lateinit var go : Button
@@ -30,22 +30,22 @@ class MainActivity : AppCompatActivity() {
         remember = findViewById(R.id.remember)
         go = findViewById(R.id.go)
         alert = findViewById(R.id.alert)
-        checkedBox = findViewById(R.id.remember);
+        checkedBox = findViewById(R.id.remember)
         AlertDialog.Builder(this)
             .setTitle("Welcome!")
             .setMessage("\n\nPlease enter location to travel from GWU and use Alert button to use metro outage" +
                     "\n\n\nNote: Currently works only for the location which does not require transfer")
-            .setPositiveButton("OK"){dialog, which ->  }
+            .setPositiveButton("OK"){ _, _ ->  }
             .show()
         go.setOnClickListener {
                //instantiate instance of geocoder
                 val geocoder = Geocoder(this, Locale.getDefault())
-                val locationName : String? = stationname.getText().toString()
+                val locationName : String? = stationname.text.toString()
                 val maxResults = 3
                 val results: List<Address>? = geocoder.getFromLocationName(locationName, maxResults)
                 if (results != null && results.isNotEmpty()) {
                 first = results[0]
-                entManager.retrieveNearbyStation(
+                manager.retrieveNearbyStation(
                 //passing the first result & OAth key
                 primaryKey=getString(R.string.wmata_key),
                 address = first,
@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
                         //don't forget to remove toasts later
                         AlertDialog.Builder(this)
                             .setTitle("Select an option")
-                            .setAdapter(arrayAdapter) { dialog, which ->
+                            .setAdapter(arrayAdapter) { _, which ->
                                 Toast.makeText(this, "You picked: ${list[which]}", Toast.LENGTH_SHORT).show()
                             Log.d("code", station[which])
                                 temp= station[which]
@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
                                 intent.putExtra("Name", list[which])
                                 startActivity(intent)
                             }
-                            .setNegativeButton("Cancel") { dialog, which ->
+                            .setNegativeButton("Cancel") { dialog, _ ->
                                 dialog.dismiss()
                             }
                             .show()
@@ -109,7 +109,7 @@ class MainActivity : AppCompatActivity() {
     }
      private fun updateText(){
          stationname.setText(text)
-         remember.setChecked(bool1)
+         remember.isChecked = bool1
     }
 }
 
