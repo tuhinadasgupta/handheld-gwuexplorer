@@ -41,7 +41,6 @@ class RouteManager {
             }
 
             override fun onResponse(call: Call, response: Response) {
-
                 val stationCode = mutableListOf<String>()
                 val responseString = response.body()?.string()
                 if (response.isSuccessful && responseString != null) {

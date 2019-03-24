@@ -24,21 +24,22 @@ class RouteActivity : AppCompatActivity() {
         direction= findViewById(R.id.direc)
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        val intentt: Intent = intent
-        val stationcodeNext:String =intentt.getStringExtra("StationCode")
-        val locationName:String = intentt.getStringExtra("Name")
+        val stationcodeNext:String =intent.getStringExtra("StationCode")
+        val locationName:String = intent.getStringExtra("Name")
         //used linecode from wmata
         val hm: HashMap<String, String> = hashMapOf( "SV" to "Silver", "GR" to "Green", "BL" to "Blue", "RD" to "Red","YL" to "Yellow", "OR" to "Orange")
         routeManager.retrieveStationList(
-            primaryKey=getString(R.string.wmata_key),
+            primaryKey=getString(R.string.wmata_key), //not used directly here but in routeManager
             codeNext=stationcodeNext,
+            //upon success
             successCallback = { path,line ->
                 runOnUiThread {
-                    recyclerView.adapter = RouteAdapter(path)
-                    val temp: String? = hm.get(line)
+                    recyclerView.adapter = RouteAdapter(path) //path of metro stops
+                    val temp: String? = hm.get(line) //tells you what line (blue,orange,silver) to take
                     Toast.makeText(this@RouteActivity, "Please take $temp line", Toast.LENGTH_LONG).show()
                 }
             },
+            //upon failure --> error handling
             errorCallback = {
                 runOnUiThread {
                     Toast.makeText(this@RouteActivity, "Error", Toast.LENGTH_LONG).show()
@@ -49,7 +50,7 @@ class RouteActivity : AppCompatActivity() {
             val sendIntent: Intent = Intent().apply {
                 action = Intent.ACTION_SEND
                 type = "text/plain"
-                putExtra(Intent.EXTRA_TEXT, "I am travelling from Foggy bottom to $locationName")
+                putExtra(Intent.EXTRA_TEXT, "I am travelling from Foggy bottom to $locationName via the metro")
             }
             startActivity(sendIntent)
         }
