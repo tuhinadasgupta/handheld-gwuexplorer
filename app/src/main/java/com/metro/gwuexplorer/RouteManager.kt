@@ -9,8 +9,8 @@ import java.util.concurrent.TimeUnit
 class RouteManager {
 
     private val okHttpClient: OkHttpClient
-     var LineCode: String =""
-
+    var LineCode: String =""
+    //setup of builder to setup okhttpclient
     init {
         val builder = OkHttpClient.Builder()
         builder.connectTimeout(20, TimeUnit.SECONDS)
@@ -19,17 +19,16 @@ class RouteManager {
         val logging = HttpLoggingInterceptor()
         logging.level = HttpLoggingInterceptor.Level.BODY
         builder.addInterceptor(logging)
-
         okHttpClient = builder.build()
     }
-
+    //method called on route activity and parameters are entered there
     fun retrieveStationList(
         primaryKey: String,
         codeNext:String,
         successCallback: (List<String> , String) -> Unit,
         errorCallback: (Exception) -> Unit
     ) {
-
+        //oAth key passed to use watma api
         val request = Request.Builder()
             .url("https://api.wmata.com/Rail.svc/json/jPath?FromStationCode=C04&ToStationCode=$codeNext")
             .header("api_key", primaryKey)
@@ -39,7 +38,7 @@ class RouteManager {
             override fun onFailure(call: Call, e: IOException) {
                 errorCallback(e)
             }
-
+            //uses json object passed back to extract needed data
             override fun onResponse(call: Call, response: Response) {
                 val stationCode = mutableListOf<String>()
                 val responseString = response.body()?.string()

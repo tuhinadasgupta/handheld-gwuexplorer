@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
                         if(list.isEmpty()){
                             Toast.makeText(this@MainActivity, "List is empty...Try again", Toast.LENGTH_LONG).show()
                         }
-                        //don't forget to remove toasts later
+
                         AlertDialog.Builder(this)
                             .setTitle("Select an option")
                             .setAdapter(arrayAdapter) { _, which ->

@@ -13,8 +13,8 @@ class RouteAdapter constructor(private val stationList: List<String>) : Recycler
     }
     override fun getItemCount(): Int = stationList.size
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val currentStation = stationList[position]
-        holder.lineNameTextView.text = currentStation
+        val currStation = stationList[position]
+        holder.lineNameTextView.text = currStation
     }
 
     class ViewHolder constructor(view: View) : RecyclerView.ViewHolder(view) {

@@ -20,17 +20,19 @@ class RouteActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_alert)
+        //variables from the alert xml file
         share =findViewById(R.id.share)
         direction= findViewById(R.id.direc)
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        val stationcodeNext:String =intent.getStringExtra("StationCode")
+        //taken from intent passed from main activity's intent.putExtra
+        val stationCodeNext:String =intent.getStringExtra("StationCode")
         val locationName:String = intent.getStringExtra("Name")
-        //used linecode from wmata
+        //used linecode from watma
         val hm: HashMap<String, String> = hashMapOf( "SV" to "Silver", "GR" to "Green", "BL" to "Blue", "RD" to "Red","YL" to "Yellow", "OR" to "Orange")
         routeManager.retrieveStationList(
             primaryKey=getString(R.string.wmata_key), //not used directly here but in routeManager
-            codeNext=stationcodeNext,
+            codeNext=stationCodeNext,
             //upon success
             successCallback = { path,line ->
                 runOnUiThread {
@@ -42,10 +44,11 @@ class RouteActivity : AppCompatActivity() {
             //upon failure --> error handling
             errorCallback = {
                 runOnUiThread {
-                    Toast.makeText(this@RouteActivity, "Error", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@RouteActivity, "Error", Toast.LENGTH_LONG).show() //display error message
                 }
             }
         )
+        //implicit intent to share your travel plans w/someone
         share.setOnClickListener {
             val sendIntent: Intent = Intent().apply {
                 action = Intent.ACTION_SEND
@@ -54,6 +57,7 @@ class RouteActivity : AppCompatActivity() {
             }
             startActivity(sendIntent)
         }
+        //explicit intent that launches google maps to show you where you're headed
         direction.setOnClickListener {
             //foggy bottom lat and long
             val navigationUri = Uri.parse ("geo:38.9009,-77.0505?q=" + Uri.encode(locationName+ ", Washington, DC metro"))
