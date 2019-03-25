@@ -54,9 +54,9 @@ class MainActivity : AppCompatActivity() {
                         val arrayAdapter = ArrayAdapter<String>(this, android.R.layout.select_dialog_singlechoice)
                         arrayAdapter.addAll(list)
                         if(list.isEmpty()){
-                            Toast.makeText(this@MainActivity, "List is empty...Try again", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this@MainActivity, "List is empty", Toast.LENGTH_SHORT).show()
                         }
-
+                        //dialog displays choices for user after they enter end destination 
                         AlertDialog.Builder(this)
                             .setTitle("Select an option")
                             .setAdapter(arrayAdapter) { _, which ->
@@ -76,14 +76,15 @@ class MainActivity : AppCompatActivity() {
                 },
                 errorCallback = {
                     runOnUiThread {
-                        Toast.makeText(this@MainActivity, "Error retrieving Station name", Toast.LENGTH_LONG).show()
+                        //defensive error check if there's no found station name
+                        Toast.makeText(this@MainActivity, "Error retrieving station name", Toast.LENGTH_SHORT).show()
                     }
                 })
                         saveData()
                 }
                 else{
                     //defensive error handling 
-                    Toast.makeText(this@MainActivity, "Try new name", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@MainActivity, "Try new name", Toast.LENGTH_SHORT).show()
                 }
         }
         alert.setOnClickListener {
