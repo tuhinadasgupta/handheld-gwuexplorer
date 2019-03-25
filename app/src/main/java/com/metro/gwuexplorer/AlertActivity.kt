@@ -10,7 +10,7 @@ class AlertActivity : AppCompatActivity() {
 
     private val alertManager: AlertManager = AlertManager()
     private lateinit var recyclerView: RecyclerView
-
+    //creates recyclerView of Alerts 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_alert)
@@ -23,14 +23,14 @@ class AlertActivity : AppCompatActivity() {
                         recyclerView.adapter = AlertAdapter(alerts)
                     }
                     else{
-                        // defensive error check
+                        // defensive error check in case of no errors to display
                         Toast.makeText(this@AlertActivity, "No Alerts to show", Toast.LENGTH_LONG).show()
                     }
                 }
             },
             errorCallback = {
                 runOnUiThread {
-                    // defensive error check
+                    // defensive error check if something goes wrong
                     Toast.makeText(this@AlertActivity, "Error retrieving alerts", Toast.LENGTH_LONG).show()
                 }
             }
