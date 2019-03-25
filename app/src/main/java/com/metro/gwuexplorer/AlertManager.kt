@@ -44,10 +44,8 @@ class AlertManager {
                        for (i in 0 until incidents.length()) {
                         val curr = incidents.getJSONObject(i)
                         val text = curr.getString("Description")
-                        val profilePictureUrl = curr.getString("profile_image_url")
                         alerts.add(
                             Alert(
-                                icon = profilePictureUrl,
                                 description = text
                             )
                         )
