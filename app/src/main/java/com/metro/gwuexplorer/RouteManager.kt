@@ -38,7 +38,7 @@ class RouteManager {
             override fun onFailure(call: Call, e: IOException) {
                 errorCallback(e)
             }
-            //uses json object passed back to extract needed data
+            //uses json object passed back from use of watma api 
             override fun onResponse(call: Call, response: Response) {
                 val stationCode = mutableListOf<String>()
                 val responseString = response.body()?.string()
@@ -46,8 +46,7 @@ class RouteManager {
                     val statuses = JSONObject(responseString).getJSONArray("Path")
                     if(statuses.length() != 0){                  
                         val now = statuses.getJSONObject(0)
-                      LineCode = now.getString("LineCode")
-                        
+                        LineCode = now.getString("LineCode")                        
                     }
                     for (i in 0 until statuses.length()) {
                         val curr = statuses.getJSONObject(i)
