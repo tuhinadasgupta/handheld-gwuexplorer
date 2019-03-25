@@ -1,6 +1,5 @@
 package com.metro.gwuexplorer
 
-import android.widget.Toast
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import org.json.JSONObject
@@ -42,12 +41,12 @@ class AlertManager {
                 //get tweets using rail incidents api returning a json object
                 if (response.isSuccessful && responseString != null) {
                        val incidents = JSONObject(responseString).getJSONArray("Incidents")
-                       for (i in 0 until incidentss.length()) {
+                       for (i in 0 until incidents.length()) {
                         val curr = incidents.getJSONObject(i)
                         val text = curr.getString("Description")
-                        val profilePictureUrl = user.getString("profile_image_url")
-                        tweets.add(
-                            Tweet(
+                        val profilePictureUrl = curr.getString("profile_image_url")
+                        alerts.add(
+                            Alert(
                                 icon = profilePictureUrl,
                                 description = text
                             )

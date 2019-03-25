@@ -15,7 +15,7 @@ class AlertAdapter constructor(private val alerts: List<Alert>) : RecyclerView.A
     override fun getItemCount(): Int = alerts.size
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currAlerts = alerts[position]
-        holder.lineNameTextView.text = currAlerts.stationName
+        holder.lineNameTextView.text = currAlerts.description
     }
     class ViewHolder constructor(view: View) : RecyclerView.ViewHolder(view) {
         val lineNameTextView: TextView = view.findViewById(R.id.description)
