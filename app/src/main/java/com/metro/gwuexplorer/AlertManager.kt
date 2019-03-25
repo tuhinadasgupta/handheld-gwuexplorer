@@ -53,7 +53,7 @@ class AlertManager {
                     successCallback(alerts)
 
                 } else {
-                    errorCallback(Exception("Search alerts call failed"))
+                    errorCallback(Exception("Unable to search alerts"))
 
                 }
             }
