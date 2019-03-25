@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit
 class StationManager {
 
     private val okHttpClient: OkHttpClient
-
+   //setup of okhttp
     init {
         val builder = OkHttpClient.Builder()
         builder.connectTimeout(20, TimeUnit.SECONDS)
@@ -29,6 +29,7 @@ class StationManager {
         successCallback: (List<String>, List<String>) -> Unit,
         errorCallback: (Exception) -> Unit
     ) {
+        //use of watma api to get station entrances
         val lat = address.latitude
         val lon = address.longitude
         val radius = "500"
@@ -41,7 +42,7 @@ class StationManager {
             override fun onFailure(call: Call, e: IOException) {
                 errorCallback(e)
             }
-
+            //returns a json object and then extract wanted information
             override fun onResponse(call: Call, response: Response) {
                 val ent = mutableListOf<String>()
                 val stationCode = mutableListOf<String>()
@@ -57,6 +58,7 @@ class StationManager {
                     }
                     successCallback(ent,stationCode)
                 } else {
+                    //error handling
                     errorCallback(Exception("Search Entrances call failed"))
                 }
             }
