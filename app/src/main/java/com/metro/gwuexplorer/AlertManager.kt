@@ -45,12 +45,23 @@ class AlertManager {
                 val alerts = mutableListOf<Alert>()
                 val responseString = response.body()?.string()
                 if (response.isSuccessful && responseString != null) {
-                    val incidents = JSONObject(responseString).getJSONArray("Incidents")
-                    for (i in 0 until incidents.length()) {
-                        alerts.add(
-                            Alert(
-                                icon = "http image",
-                                stationName = "stationName"
+//                     val incidents = JSONObject(responseString).getJSONArray("Incidents")
+//                     for (i in 0 until incidents.length()) {
+//                         alerts.add(
+//                             Alert(
+//                                 icon = "http image",
+//                                 stationName = "stationName"
+//                             )
+//                         )
+                       val incidents = JSONObject(responseString).getJSONArray("Incidents")
+                       for (i in 0 until incidentss.length()) {
+                        val curr = incidents.getJSONObject(i)
+                        val text = curr.getString("Description")
+                        val profilePictureUrl = user.getString("profile_image_url")
+                        tweets.add(
+                            Tweet(
+                                icon = profilePictureUrl,
+                                description = text
                             )
                         )
                     }
